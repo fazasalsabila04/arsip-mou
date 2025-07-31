@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard MoU</title>
+  <link rel="stylesheet" href="../ui/style.css">
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <!-- Tombol Menu -->
+    <div id="menu-toggle" class="menu-toggle">☰</div>
+      <div class="header-text">
+        <h1>📘 Daftar MoU Perguruan Tinggi</h1>
+        <p class="subheading">2009–2025 | Biro Kesra – Bidang Pendidikan</p>
+      </div>
+    </div>
+
+    <!-- Ikon Profil Kanan Atas -->
+    <div class="user-profile">
+      <img src="../ui/images/user.jpg" alt="Profil Pengguna" class="profile-icon" id="profileIcon" />
+      <div class="dropdown-menu" id="dropdownMenu">
+        <ul>
+          <li><a href="#">🔒 Ganti Password</a></li>
+          <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Tombol Menu -->
+  <div id="menu-toggle" class="menu-toggle">☰</div>
+
+  <!-- Sidebar -->
+  <nav id="sidebar" class="sidebar">
+    <ul>
+      <li><a href="dashboard.html">📍 Peta MoU</a></li>
+      <li><a href="list-mou.html">📄 Daftar Berkas MoU</a></li>
+      <li><a href="upload-mou.html">📁 Upload MoU</a></li>
+      <li><a href="#" onclick="logout()">🔓 Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Konten Utama -->
+  <main class="main-content">
+
+    <div class="search-container">
+  <input
+    type="text"
+    id="search-input"
+    placeholder="Cari nama perguruan tinggi..."
+  />
+  <button id="search-button">🔍</button>
+</div>
+
+
+
+    <!-- Peta Lokasi Perguruan Tinggi -->
+    <div id="map" style="height: 500px; margin: 20px 0; border-radius: 8px;"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <!-- Tambahkan isi footer di sini jika diperlukan -->
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.42.5/dist/umd/supabase.min.js"></script>
+  
+  <!-- JavaScript Utama -->
+  <script src="../frontend/script.js"></script>
+
+  <script>
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('menu-toggle');
+
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+  });
+
+  function logout() {
+    // Tambahkan proses logout di sini
+    alert('Anda akan logout.');
+    // supabaseClient.auth.signOut(); // kalau sudah setup
+    window.location.href = 'login.html';
+  }
+  </script>
+
+</body>
+</html>

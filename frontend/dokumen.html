@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dokumen MoU</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="menu-and-title">
+      <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+      <h1 class="header-title">Dokumen MoU</h1>
+    </div>
+  </header>
+
+  <main>
+    <input type="text" id="searchInput" placeholder="Cari nama instansi..." onkeyup="searchTable()" />
+
+    <table id="mouTable">
+      <thead>
+        <tr>
+          <th>Perguruan Tinggi</th>
+          <th>Tanggal Mulai</th>
+          <th>Tanggal Selesai</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Universitas A</td>
+          <td>2023-01-15</td>
+          <td>2025-01-15</td>
+          <td>Aktif</td>
+        </tr>
+        <tr>
+          <td>Politeknik B</td>
+          <td>2022-08-01</td>
+          <td>2024-08-01</td>
+          <td>Segera Berakhir</td>
+        </tr>
+        <tr>
+          <td>Institut C</td>
+          <td>2020-05-10</td>
+          <td>2023-05-10</td>
+          <td>Kadaluarsa</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    function searchTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#mouTable tbody tr");
+
+      rows.forEach(row => {
+        const instansi = row.cells[0].textContent.toLowerCase();
+        row.style.display = instansi.includes(input) ? "" : "none";
+      });
+    }
+
+    function toggleSidebar() {
+      window.location.href = "dashboard.html"; // atau ke halaman yang punya sidebar
+    }
+  </script>
+</body>
+</html>

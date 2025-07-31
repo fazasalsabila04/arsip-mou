@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Berkas MoU</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 30px;
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f8fb;
+      color: #333;
+    }
+
+    h1 {
+      display: flex;
+      align-items: center;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    h1::before {
+      content: "📄";
+      margin-right: 10px;
+      font-size: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #005b96;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 20px 0;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #00497a;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      background-color: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 14px 20px;
+      text-align: left;
+    }
+
+    thead {
+      background-color: #005b96;
+      color: white;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f0f4f8;
+    }
+
+    tbody tr:hover {
+      background-color: #e0ecf4;
+    }
+
+    td a {
+      color: #005b96;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    td a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      th, td {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Daftar Berkas MoU</h1>
+  <a href="dashboard.html" class="btn">⬅ Kembali ke Dashboard</a>
+
+  <div class="table-container">
+    <table id="mouTable">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>Tanggal Dibuat</th>
+          <th>Tanggal Berakhir</th>
+          <th>Berkas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data Supabase akan dimuat di sini -->
+      </tbody>
+    </table>
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    const supabaseUrl = 'https://rzxdfzsdikocnvwlzxgt.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6eGRmenNkaWtvY252d2x6eGd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMjI3NDAsImV4cCI6MjA2ODg5ODc0MH0.gXJkMAAqo2q3W4W45PGMCCXe1yqZgqPQ4c0szUS9pmQ';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    async function loadMoU() {
+      const { data, error } = await supabase
+        .from('mou')
+        .select('*');
+
+      if (error) {
+        console.error('Error mengambil data:', error);
+        return;
+      }
+
+      const tbody = document.querySelector('#mouTable tbody');
+      data.forEach((item, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${item.nama || '-'}</td>
+          <td>${item.tanggal_dibuat ? new Date(item.tanggal_dibuat).toLocaleDateString('id-ID') : '-'}</td>
+          <td>${item.tanggal_berakhir ? new Date(item.tanggal_berakhir).toLocaleDateString('id-ID') : '-'}</td>
+          <td><a href="${item.link_berkas}" target="_blank">📄 Lihat</a></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    loadMoU();
+  </script>
+</body>
+</html>
