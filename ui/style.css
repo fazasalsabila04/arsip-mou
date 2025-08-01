@@ -614,8 +614,9 @@ h1, p {
 
 /* Sidebar */
 .sidebar {
+  display: none;
   position: fixed;
-  top: 0;
+  top: 60px;
   left: -250px;
   width: 220px;
   height: 100%;
