@@ -741,6 +741,7 @@ h1, p {
 
 .sidebar.active {
   left: 0;
+  display: block;
 }
 .search-container {
   display : flex;

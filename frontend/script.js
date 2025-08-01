@@ -51,13 +51,11 @@ function setupSidebarToggle() {
   const toggle = document.getElementById("menu-toggle");
   const sidebar = document.getElementById("sidebar");
 
+  if (!toggle || !sidebar) return;
+
   toggle.addEventListener("click", () => {
     sidebar.classList.toggle("active");
   });
-  function logout() {
-    alert('Anda akan logout.');
-    window.location.href = 'login.html';
-  }
 
   document.addEventListener("click", function (event) {
     if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
