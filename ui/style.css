@@ -679,11 +679,11 @@ h1, p {
   transition: left 0.3s ease;
 }
 .header {
-  position: relative;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 100px;
   background-color: #1976d2;
   color: white;
   display: flex;
@@ -746,7 +746,7 @@ h1, p {
   justify-content : center;
   align-items: center;
   margin: 20px auto;
-  margin-top : 80px;
+  margin-top : 10px;
 }
 .search-button {
   background-color: #005b96;
