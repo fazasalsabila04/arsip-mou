@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Dokumen MoU</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <h2>Upload Dokumen MoU</h2>
+  <form id="upload-form">
+    <label for="file">Pilih file (PDF):</label>
+    <input type="file" id="file" accept=".pdf" required />
+    <button type="submit">Upload</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script src="upload.js"></script>
+</body>
+</html>
